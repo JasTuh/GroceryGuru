@@ -12,6 +12,24 @@ const handle = app.getRequestHandler();
 
 const PORT = 3000;
 
+function login(req, res) {
+  const username = req.body.username;
+  const password = req.body.password;
+  console.log(username);
+  console.log(password);
+  console.log(req.body);
+  const collection = db.get().collection('users');
+  collection.find({username}).toArray((err, docs) => {
+    if (docs.length === 0){
+      res.send(JSON.stringify({ error: 'Username doesn\'t exist' }));
+      return;
+    }
+    console.log(docs);
+    bcrypt.compare(password, docs[0].password, (err, valid) => {
+      res.send(JSON.stringify({ valid }))  
+    })
+  })
+}
 function createUser(req, res) {
   const username = req.body.username;
   const password = req.body.password;
@@ -52,10 +70,10 @@ co(function* () {
   yield connect();
   const server = express();
   server.use(cookieParser());
-  createUser();
   server.use(body.json());
   server.get('*', (req, res) => handle(req, res));
   server.post('/addUser', createUser)
+  server.post('/login', login)
   server.listen(PORT);
   console.log(`Listening on ${PORT}`);
 });

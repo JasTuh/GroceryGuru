@@ -1,7 +1,10 @@
 import React from 'react';
+import Page from '../layouts/main';
 
 export default () => (
-  <div>
-    Grocery Guru
-  </div>
+  <Page>
+    <div>
+      Grocery Guru
+    </div>
+  </Page>
 )

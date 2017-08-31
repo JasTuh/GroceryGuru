@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
 
-export default () => (
-  <div>
-    Grocery Guru
-  </div>
-)
+import App from '../components/app';
+import reducers from '../reducers';
+
+const createStoreWithMiddleware = applyMiddleware()(createStore);
+
+export default class Home extends Component{
+  render(){
+    return (
+    <Provider store={createStoreWithMiddleware(reducers)}>
+      <App />
+    </Provider>
+    )
+  }
+}

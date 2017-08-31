@@ -1,0 +1,4 @@
+.next/
+*.log
+*.debug
+node_modules/

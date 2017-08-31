@@ -15,9 +15,6 @@ const PORT = 3000;
 function login(req, res) {
   const username = req.body.username;
   const password = req.body.password;
-  console.log(username);
-  console.log(password);
-  console.log(req.body);
   const collection = db.get().collection('users');
   collection.find({username}).toArray((err, docs) => {
     if (docs.length === 0){

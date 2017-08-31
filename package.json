@@ -18,9 +18,12 @@
   },
   "homepage": "https://github.com/JasTuh/GroceryGuru#readme",
   "dependencies": {
+    "ajv": "^5.2.2",
+    "bcrypt": "^1.0.3",
     "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.4",
+    "mongodb": "^2.2.31",
     "next": "^3.2.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
